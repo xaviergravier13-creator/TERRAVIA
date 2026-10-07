@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TERAVIA – Explorez un monde, fondez votre nation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--abyss:#0f2230;--sea:#1d4b5c;--mist:#7fb0b2;--stone:#a7a99f;--moss:#8fa48b;--parch:#eae3d2;
+--paper:#eae3d2;--paper-ink:#14232d;--paper-soft:#fff9ec;--paper-line:#c9c1ac;--paper-mute:#55615f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#15303d;--paper-ink:#eae3d2;--paper-soft:#1b3a49;--paper-line:#2f5566;--paper-mute:#a9b9b6}}
+:root[data-theme="dark"]{--paper:#15303d;--paper-ink:#eae3d2;--paper-soft:#1b3a49;--paper-line:#2f5566;--paper-mute:#a9b9b6}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--paper-ink);font:17px/1.65 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0;font-weight:600}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mist);outline-offset:3px}
+.w{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;background:rgba(15,34,48,.82);backdrop-filter:blur(10px);color:var(--parch)}
+header .w{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:Fraunces,serif;font-weight:800;letter-spacing:.14em;text-decoration:none;font-size:19px}
+nav{display:flex;gap:22px;font-size:15px}nav a{text-decoration:none;opacity:.8}nav a:hover{opacity:1;color:var(--mist)}
+@media(max-width:820px){nav{display:none}}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 16px "Instrument Sans",sans-serif;padding:14px 26px;border-radius:3px;text-decoration:none;transition:transform .2s,background .2s}
+.btn.main{background:var(--mist);color:#0b1b25}.btn.main:hover{background:#9cc7c8;transform:translateY(-2px)}
+.btn.ghost{border:1px solid rgba(234,227,210,.4);color:var(--parch);background:transparent}.btn.ghost:hover{border-color:var(--mist);color:var(--mist)}
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;background:radial-gradient(120% 90% at 70% 30%,#173a4b,var(--abyss) 70%);color:var(--parch);overflow:hidden;display:flex;align-items:center}
+.map{position:absolute;inset:0;width:100%;height:100%}
+.map path{fill:none;stroke-linejoin:round}
+.dim path{stroke:#5b8c96;stroke-opacity:.28;stroke-width:1}
+.lit{--x:70%;--y:40%;-webkit-mask-image:radial-gradient(circle 260px at var(--x) var(--y),#000 20%,transparent 100%);mask-image:radial-gradient(circle 260px at var(--x) var(--y),#000 20%,transparent 100%)}
+.lit path{stroke:var(--parch);stroke-opacity:.85;stroke-width:1.3}
+.lit text{fill:var(--parch);font:italic 15px Fraunces,serif}
+.hero .w{position:relative;z-index:2;padding-top:90px;padding-bottom:60px;pointer-events:none}
+.hero .w *{pointer-events:auto}
+.hero h1{font-size:clamp(54px,11vw,138px);font-weight:800;letter-spacing:.06em}
+.hero .tag{font-family:Fraunces,serif;font-size:clamp(22px,3.4vw,38px);margin:14px 0 18px;max-width:20ch;font-weight:400;font-style:italic;color:var(--mist)}
+.hero p{max-width:46ch;color:#cdd6d2;margin:0 0 30px}
+.ip{margin-top:18px;font-size:14px;color:var(--stone)}
+.compass{position:absolute;right:5%;bottom:7%;width:110px;opacity:.55;animation:spin 90s linear infinite;z-index:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.compass{animation:none}html{scroll-behavior:auto}}
+/* sections */
+section{padding:104px 0}
+.ink{background:var(--abyss);color:var(--parch)}
+.sea{background:var(--sea);color:var(--parch)}
+h2{font-size:clamp(32px,5vw,54px);max-width:18ch;margin-bottom:22px}
+.lead{max-width:60ch;color:var(--paper-mute);font-size:19px}
+.ink .lead,.sea .lead{color:#c3d0cd}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+@media(max-width:820px){.cols{grid-template-columns:1fr;gap:32px}section{padding:72px 0}}
+/* trajectory */
+.path{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;position:relative}
+.path:before{content:"";position:absolute;left:12%;right:12%;top:13px;border-top:2px dashed var(--mist);opacity:.6}
+.stop{text-align:center;padding:0 10px;position:relative}
+.stop i{display:block;width:26px;height:26px;margin:0 auto 16px;border-radius:50%;background:var(--abyss);border:3px solid var(--mist)}
+.stop:nth-child(2) i{width:26px;border-radius:2px}.stop:nth-child(3) i{transform:rotate(45deg);border-radius:2px}.stop:nth-child(4) i{background:var(--mist)}
+.stop h3{font-size:22px}.stop p{font-size:15px;margin:6px 0 0;color:#a9bbb9}
+@media(max-width:640px){.path{grid-template-columns:1fr 1fr;gap:34px 0}.path:before{display:none}}
+/* lists */
+.facts{list-style:none;padding:0;margin:0;border-top:1px solid var(--paper-line)}
+.facts li{padding:15px 0;border-bottom:1px solid var(--paper-line);display:flex;gap:14px}
+.facts b{font-family:Fraunces,serif;font-weight:600;min-width:150px}
+.ink .facts,.ink .facts li{border-color:#2a4657}.sea .facts,.sea .facts li{border-color:#3e6a7a}
+@media(max-width:560px){.facts li{flex-direction:column;gap:2px}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.chips span{padding:7px 16px;border:1px solid var(--paper-line);border-radius:999px;font-size:15px;background:var(--paper-soft)}
+/* atlas */
+.atlas{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:44px;align-items:stretch}
+@media(max-width:820px){.atlas{grid-template-columns:1fr}}
+.atlas svg{width:100%;height:auto;background:#10283a;border:1px solid #2a4657;border-radius:4px}
+.land{fill:#1d4b5c;stroke:var(--mist);stroke-width:1.2;cursor:pointer;transition:fill .25s}
+.land:hover,.land.on{fill:#2c6d7a}
+.pin{fill:var(--parch);pointer-events:none}.lab{fill:var(--parch);font:italic 14px Fraunces,serif;pointer-events:none}
+.card{background:#10283a;border:1px solid #2a4657;border-radius:4px;padding:30px}
+.card h3{font-size:30px;margin-bottom:6px}.card .k{color:var(--mist);font-size:15px;margin-bottom:12px}
+.card p{margin:0 0 14px;color:#c3d0cd}.card small{color:var(--stone)}
+/* mods */
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+@media(max-width:820px){.mods{grid-template-columns:1fr}}
+.mod{background:var(--paper-soft);border:1px solid var(--paper-line);padding:30px;border-radius:4px}
+.mod h3{font-size:26px;margin-bottom:10px}.mod p{margin:0;color:var(--paper-mute);font-size:16px}
+.mod svg{width:46px;height:46px;margin-bottom:16px;stroke:var(--sea);fill:none;stroke-width:1.6}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .mod svg{stroke:var(--mist)}}
+/* news */
+.news{margin-top:40px;border-top:1px solid var(--paper-line)}
+.news a{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--paper-line);text-decoration:none}
+.news a:hover h3{color:var(--sea)}
+.news time{color:var(--paper-mute);font-size:15px}.news h3{font-size:23px;margin-bottom:4px}.news p{margin:0;color:var(--paper-mute);font-size:16px}
+@media(max-width:560px){.news a{grid-template-columns:1fr;gap:4px}}
+/* cta + footer */
+.cta{text-align:center}.cta h2{margin:0 auto 22px;max-width:20ch}.cta .lead{margin:0 auto 32px}
+footer{background:#0a1822;color:#9fb0ae;padding:56px 0 40px;font-size:15px}
+footer .g{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+@media(max-width:700px){footer .g{grid-template-columns:1fr 1fr}}
+footer h4{color:var(--parch);margin:0 0 10px;font:600 16px Fraunces,serif}footer a{display:block;text-decoration:none;padding:3px 0}footer a:hover{color:var(--mist)}
+footer .l{color:var(--parch);font:800 22px Fraunces,serif;letter-spacing:.14em;margin-bottom:10px}
+footer .c{margin-top:36px;padding-top:20px;border-top:1px solid #1d3444;font-size:13px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--mist);color:#0b1b25;padding:12px 22px;border-radius:3px;opacity:0;transition:.3s;z-index:40;font-weight:600}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<header><div class="w"><a class="logo" href="#top">TERAVIA</a>
+<nav><a href="#exploration">Exploration</a><a href="#villes">Villes</a><a href="#technologie">Technologie</a><a href="#nations">Nations</a><a href="#atlas">Atlas</a><a href="#mods">Mods</a><a href="#actus">Actualités</a></nav>
+<a class="btn main" style="padding:9px 18px;font-size:14px" href="#rejoindre">Rejoindre</a></div></header>
+
+<main id="top">
+<div class="hero">
+<svg class="map dim" id="m1" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<svg class="map lit" id="m2" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<svg class="compass" viewBox="0 0 100 100" fill="none" stroke="#eae3d2" stroke-width="1" aria-hidden="true"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="38" stroke-dasharray="1 3"/><path d="M50 4 58 50 50 96 42 50Z"/><path d="M4 50 50 42 96 50 50 58Z" opacity=".6"/></svg>
+<div class="w"><h1>TERAVIA</h1>
+<p class="tag">Un monde à parcourir. Un pays à fonder.</p>
+<p>Partez à l'aventure sur un continent immense, choisissez votre terre, bâtissez un campement, puis laissez-le devenir une ville, puis une nation. L'histoire de votre territoire, c'est vous qui l'écrivez.</p>
+<a class="btn main" href="#rejoindre" id="join">Rejoindre le serveur</a> <a class="btn ghost" href="#exploration">Découvrir le monde</a>
+<div class="ip">Passez le curseur sur la carte pour révéler les terres connues.</div></div>
+</div>
+
+<section class="ink" id="concept"><div class="w">
+<h2>D'un feu de camp à une nation</h2>
+<p class="lead">TERAVIA est un monde persistant. Rien n'y est écrit d'avance : chaque territoire se construit par les choix des joueurs qui l'habitent.</p>
+<div class="path">
+<div class="stop"><i></i><h3>Campement</h3><p>Une tente, un feu, une première frontière</p></div>
+<div class="stop"><i></i><h3>Village</h3><p>Des voisins, des routes, un nom</p></div>
+<div class="stop"><i></i><h3>Ville</h3><p>Un maire, un drapeau, des lois</p></div>
+<div class="stop"><i></i><h3>Nation</h3><p>Des alliances, des traités, une histoire</p></div>
+</div></div></section>
+
+<section id="exploration"><div class="w cols"><div>
+<h2>Partez loin. Revenez avec une carte.</h2>
+<p class="lead">Le monde est vaste et ne se découvre qu'à force de voyage. Montagnes, archipels, plateaux, vallées : certaines régions gardent leurs secrets pour ceux qui osent s'éloigner de l'apparition.</p></div>
+<ul class="facts">
+<li><b>Voyager</b><span>À pied, en bateau, en train ou dans les airs.</span></li>
+<li><b>Repérer</b><span>Comparer les régions, leurs ressources et leurs reliefs.</span></li>
+<li><b>S'installer</b><span>Choisir l'endroit qui vous ressemble et y planter votre campement.</span></li>
+<li><b>Cartographier</b><span>Partager vos découvertes sur la carte du monde.</span></li></ul></div></section>
+
+<section class="sea" id="villes"><div class="w cols"><div>
+<h2>Fondez votre ville</h2>
+<p class="lead">Quand vous avez trouvé votre place, déclarez-la. Votre ville devient un territoire reconnu, avec son identité et ses habitants.</p></div>
+<ul class="facts">
+<li><b>Nommer</b><span>Donnez un nom à votre ville.</span></li>
+<li><b>Dessiner</b><span>Choisissez ou créez votre drapeau.</span></li>
+<li><b>Délimiter</b><span>Définissez votre territoire.</span></li>
+<li><b>Gouverner</b><span>Devenez maire et nommez vos responsables.</span></li>
+<li><b>Bâtir</b><span>Construisez bâtiments publics et infrastructures.</span></li>
+<li><b>Accueillir</b><span>Invitez d'autres joueurs à rejoindre votre ville.</span></li></ul></div></section>
+
+<section id="technologie"><div class="w">
+<h2>Machines, rails et ciels ouverts</h2>
+<p class="lead">La technologie fait grandir les civilisations. Automatisez vos usines, tracez des lignes de chemin de fer entre vos villes, construisez des véhicules et prenez les airs.</p>
+<div class="mods" style="margin-top:36px">
+<div class="mod"><h3>Industrie</h3><p>Usines, convoyeurs et mécanismes pour produire à grande échelle.</p></div>
+<div class="mod"><h3>Transport</h3><p>Chemins de fer, routes et véhicules pour relier les territoires.</p></div>
+<div class="mod"><h3>Aviation</h3><p>Aéronefs construits par les joueurs pour franchir les distances.</p></div></div></div></section>
+
+<section class="ink" id="nations"><div class="w cols"><div>
+<h2>Nations, traités, rivalités</h2>
+<p class="lead">Chaque civilisation invente son régime. Les relations entre joueurs écrivent la politique du monde.</p>
+<div class="chips" style="--paper-line:#3e6a7a;--paper-soft:transparent"><span>Maire</span><span>Premier ministre</span><span>Président</span><span>Ministres</span><span>Conseillers</span><span>Gouverneurs</span><span>Citoyens</span></div></div>
+<ul class="facts">
+<li><b>Alliances</b><span>Unissez vos forces avec d'autres nations.</span></li>
+<li><b>Traités</b><span>Signez des accords qui engagent vos peuples.</span></li>
+<li><b>Commerce</b><span>Échangez ressources et production.</span></li>
+<li><b>Défense</b><span>Créez des pactes pour protéger vos alliés.</span></li>
+<li><b>Guerre</b><span>Déclarez un conflit, disputez des territoires.</span></li></ul></div></section>
+
+<section class="ink" id="atlas" style="padding-top:0"><div class="w">
+<h2>L'atlas de Teravia</h2>
+<p class="lead">Un aperçu des types de terres que vous croiserez. Touchez une région pour en lire la fiche. Les noms sont des exemples, la carte réelle reste à découvrir.</p>
+<div class="atlas">
+<svg viewBox="0 0 600 420" role="img" aria-label="Carte illustrée des régions">
+<path class="land on" data-i="0" d="M60 90 130 50 220 70 250 140 200 200 110 210 50 160Z"/>
+<path class="land" data-i="1" d="M300 60 400 40 470 90 450 170 360 190 300 140Z"/>
+<path class="land" data-i="2" d="M80 270 190 250 260 300 230 370 130 390 70 340Z"/>
+<path class="land" data-i="3" d="M340 260 440 230 540 270 520 360 420 390 340 340Z"/>
+<g class="pin"><circle cx="150" cy="130" r="4"/><circle cx="380" cy="110" r="4"/><circle cx="160" cy="320" r="4"/><circle cx="440" cy="310" r="4"/></g>
+<text class="lab" x="108" y="152">Plaines du Seuil</text><text class="lab" x="335" y="132">Hauts Brumeux</text><text class="lab" x="104" y="342">Archipel Calcaire</text><text class="lab" x="384" y="332">Forêts Mousse</text></svg>
+<div class="card" id="card" aria-live="polite"></div></div></div></section>
+
+<section id="mods"><div class="w">
+<h2>Les mods qui font tourner le monde</h2>
+<p class="lead">Une base technologique pensée pour bâtir, transporter et automatiser.</p>
+<div class="mods">
+<div class="mod"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M38 10l-6 6M16 32l-6 6"/></svg><h3>Create</h3><p>Engrenages, courroies et automatisation pour concevoir vos usines et vos lignes de production.</p></div>
+<div class="mod"><svg viewBox="0 0 48 48"><path d="M4 26 44 8 30 40 24 28Z"/><path d="M24 28 44 8"/></svg><h3>Create Aeronautics</h3><p>Construisez des appareils volants et reliez vos territoires par les airs.</p></div>
+<div class="mod"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 20h32M20 8v32"/></svg><h3>Mods technologiques</h3><p>Une sélection complémentaire d'outils et de machines. La liste complète est dans le wiki.</p></div></div></div></section>
+
+<section style="background:var(--paper-soft)" id="actus"><div class="w">
+<h2>Journal de l'expédition</h2>
+<div class="news">
+<a href="#actus"><time>À venir</time><div><h3>Ouverture des terres</h3><p>Date et conditions d'accès annoncées prochainement sur le Discord.</p></div></a>
+<a href="#actus"><time>À venir</time><div><h3>Guide de fondation d'une ville</h3><p>Toutes les étapes pour transformer un campement en ville reconnue.</p></div></a>
+<a href="#actus"><time>À venir</time><div><h3>Règles de diplomatie et de guerre</h3><p>Comment se déclarent les conflits et se signent les traités.</p></div></a></div></div></section>
+
+<section class="sea cta" id="rejoindre"><div class="w">
+<h2>Votre carte est encore vierge</h2>
+<p class="lead">Rejoignez TERAVIA, choisissez une direction et partez.</p>
+<button class="btn main" id="copy">Copier l'adresse : play.teravia.net</button></div></section>
+</main>
+
+<footer><div class="w"><div class="g">
+<div><div class="l">TERAVIA</div><p style="margin:0;max-width:30ch">Un monde persistant d'exploration et de civilisations. Projet indépendant, non affilié à Mojang ou Microsoft.</p></div>
+<div><h4>Monde</h4><a href="#exploration">Exploration</a><a href="#atlas">Carte du monde</a><a href="#villes">Villes</a><a href="#nations">Nations</a></div>
+<div><h4>Ressources</h4><a href="#mods">Mods</a><a href="#top">Wiki</a><a href="#top">Règlement</a><a href="#actus">Actualités</a></div>
+<div><h4>Communauté</h4><a href="#top">Discord</a><a href="#rejoindre">Rejoindre</a></div></div>
+<div class="c">© 2026 TERAVIA. Tous droits réservés.</div></div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+// Cartographie : courbes de niveau générées
+function rnd(s){return function(){s=(s*16807)%2147483647;return s/2147483647}}
+function blob(cx,cy,r,seed){var R=rnd(seed),p=[],a1=R()*6,a2=R()*6,a3=R()*6,n=90;
+for(var i=0;i<=n;i++){var t=i/n*Math.PI*2,k=1+.22*Math.sin(3*t+a1)+.12*Math.sin(5*t+a2)+.07*Math.sin(9*t+a3);
+p.push((cx+Math.cos(t)*r*k*1.25).toFixed(1)+" "+(cy+Math.sin(t)*r*k*.85).toFixed(1))}
+return "M"+p.join("L")+"Z"}
+var isl=[[820,330,1],[300,520,2],[560,160,3],[1000,640,4]],names=[[820,330,"Hauts Brumeux"],[300,520,"Plaines du Seuil"],[560,160,"Archipel Calcaire"],[1000,640,"Forêts Mousse"]],d="";
+isl.forEach(function(o,j){for(var k=1;k<=11;k++)d+='<path d="'+blob(o[0],o[1],k*17,o[2]*7+1)+'"/>'});
+var t="";names.forEach(function(n){t+='<text x="'+(n[0]-40)+'" y="'+(n[1]+4)+'">'+n[2]+'</text>'});
+m1.innerHTML=d;m2.innerHTML=d+t;
+var hero=document.querySelector(".hero");
+hero.addEventListener("pointermove",function(e){var b=hero.getBoundingClientRect();
+m2.style.setProperty("--x",(e.clientX-b.left)+"px");m2.style.setProperty("--y",(e.clientY-b.top)+"px")});
+// Atlas
+var R=[["Plaines du Seuil","Terres d'accueil","Larges étendues douces, idéales pour poser un premier campement et voir grandir un village.","Fondations rapides, agriculture, routes."],
+["Hauts Brumeux","Massifs et plateaux","Reliefs marqués où brouillard et minerais attirent explorateurs et ingénieurs.","Industrie, rails de montagne, forteresses."],
+["Archipel Calcaire","Îles et détroits","Un chapelet d'îles qui favorise ports, commerce et alliances maritimes.","Navigation, commerce, aviation."],
+["Forêts Mousse","Forêts anciennes","Canopée dense et clairières cachées pour les nations qui préfèrent le calme.","Discrétion, ressources, diplomatie."]];
+var lands=document.querySelectorAll(".land");
+function show(i){var r=R[i];card.innerHTML='<h3>'+r[0]+'</h3><div class="k">'+r[1]+'</div><p>'+r[2]+'</p><small>Adapté à : '+r[3]+'</small>';
+lands.forEach(function(l,j){l.classList.toggle("on",i==j)})}
+lands.forEach(function(l){l.addEventListener("click",function(){show(+l.dataset.i)})});show(0);
+// Copie de l'adresse
+function toast(m){var e=document.getElementById("toast");e.textContent=m;e.classList.add("on");setTimeout(function(){e.classList.remove("on")},2200)}
+copy.addEventListener("click",function(){var ok=function(){toast("Adresse copiée : play.teravia.net")};
+try{navigator.clipboard.writeText("play.teravia.net").then(ok,function(){toast("Adresse : play.teravia.net")})}catch(e){toast("Adresse : play.teravia.net")}});
+</script>
+</body>
+</html>
